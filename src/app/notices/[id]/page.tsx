@@ -14,6 +14,7 @@ import { DDayBadge } from "@/components/notices/DDayBadge";
 import { NoticeFieldRow, fieldInputClass } from "@/components/notices/NoticeFieldEditor";
 import { RawTextViewer } from "@/components/notices/RawTextViewer";
 import { ChecklistPanel } from "@/components/notices/ChecklistPanel";
+import { AiSummaryCard } from "@/components/notices/AiSummaryCard";
 
 function toDateTimeLocal(iso: string | null): string {
   if (!iso) return "";
@@ -79,6 +80,8 @@ export default function NoticeDetailPage() {
       <Card className="p-4">
         <Badge tone="amber">⚠ 원문 확인 필요 — 자동 추출 결과는 참고용입니다. 반드시 원문과 대조해 확인하세요.</Badge>
       </Card>
+
+      <AiSummaryCard text={notice.rawLines.join("\n")} />
 
       <Card className="flex flex-col gap-5 p-5">
         <NoticeFieldRow label="공고명" matched={e.title.matched}>
