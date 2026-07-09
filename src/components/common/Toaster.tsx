@@ -29,7 +29,7 @@ export function Toaster() {
       {toasts.map((t) => (
         <div
           key={t.id}
-          className="rounded-md bg-gray-900 px-4 py-2 text-sm text-white shadow-lg"
+          className="rounded-md bg-ink px-4 py-2 text-sm text-on-primary shadow-[0px_1px_1px_#00000005,0px_8px_16px_-4px_#0000000a,0px_24px_32px_-8px_#0000000f]"
         >
           {t.message}
         </div>

@@ -50,7 +50,7 @@ export function AiSummaryCard({ text }: AiSummaryCardProps) {
   return (
     <Card className="flex flex-col gap-3 p-5">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-base font-semibold text-gray-900">AI 요약 (Gemini)</h2>
+        <h2 className="text-base font-semibold text-ink">AI 요약 (Gemini)</h2>
         <Button
           variant="secondary"
           onClick={handleSummarize}
@@ -61,10 +61,10 @@ export function AiSummaryCard({ text }: AiSummaryCardProps) {
       </div>
 
       {!hasText && (
-        <p className="text-sm text-gray-500">원문이 없어 AI 요약을 사용할 수 없습니다.</p>
+        <p className="text-sm text-mute">원문이 없어 AI 요약을 사용할 수 없습니다.</p>
       )}
 
-      {status === "error" && <p className="text-sm text-red-600">{errorMessage}</p>}
+      {status === "error" && <p className="text-sm text-error">{errorMessage}</p>}
 
       {status === "success" && result && (
         <div className="flex flex-col gap-3">
@@ -73,26 +73,26 @@ export function AiSummaryCard({ text }: AiSummaryCardProps) {
           </Badge>
 
           <div>
-            <p className="text-sm font-medium text-gray-700">핵심 요약</p>
-            <p className="text-sm text-gray-800">{result.summary || "-"}</p>
+            <p className="text-sm font-medium text-body">핵심 요약</p>
+            <p className="text-sm text-ink">{result.summary || "-"}</p>
           </div>
 
           <div>
-            <p className="text-sm font-medium text-gray-700">참가 자격</p>
+            <p className="text-sm font-medium text-body">참가 자격</p>
             {result.eligibility.length > 0 ? (
-              <ul className="list-inside list-disc text-sm text-gray-800">
+              <ul className="list-inside list-disc text-sm text-ink">
                 {result.eligibility.map((line, i) => (
                   <li key={i}>{line}</li>
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-gray-500">-</p>
+              <p className="text-sm text-mute">-</p>
             )}
           </div>
 
           <div>
-            <p className="text-sm font-medium text-gray-700">마감일</p>
-            <p className="text-sm text-gray-800">{result.deadline || "-"}</p>
+            <p className="text-sm font-medium text-body">마감일</p>
+            <p className="text-sm text-ink">{result.deadline || "-"}</p>
           </div>
         </div>
       )}

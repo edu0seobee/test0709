@@ -26,10 +26,10 @@ export function ConfirmDialog({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <Card className="w-full max-w-sm p-5">
-        <p className="text-base font-semibold text-gray-900">{title}</p>
+      <Card className="w-full max-w-sm rounded-lg p-5 shadow-[0px_1px_1px_#00000005,0px_8px_16px_-4px_#0000000a,0px_24px_32px_-8px_#0000000f]">
+        <p className="text-base font-semibold tracking-[-0.6px] text-ink">{title}</p>
         {description && (
-          <p className="mt-2 text-sm text-gray-600">{description}</p>
+          <p className="mt-2 text-sm text-body">{description}</p>
         )}
         <div className="mt-5 flex justify-end gap-2">
           <Button variant="secondary" onClick={onCancel}>

@@ -28,7 +28,7 @@ const ROWS: Row[] = [
     render: (n) => (
       <div className="flex flex-col gap-1">
         <DDayBadge deadlineIso={n.extracted.deadline.value} />
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-mute">
           {formatDate(n.extracted.deadline.value)}
         </span>
       </div>
@@ -55,17 +55,17 @@ const ROWS: Row[] = [
 
 export function CompareTable({ notices }: CompareTableProps) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+    <div className="overflow-x-auto rounded-md border border-hairline bg-canvas">
       <table className="min-w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b border-gray-200 bg-gray-50">
-            <th className="w-32 px-3 py-3 text-left font-medium text-gray-500">
+          <tr className="border-b border-hairline bg-canvas-soft">
+            <th className="w-32 px-3 py-3 text-left font-mono text-xs uppercase tracking-wide text-mute">
               항목
             </th>
             {notices.map((notice) => (
               <th
                 key={notice.id}
-                className="min-w-56 px-3 py-3 text-left font-semibold text-gray-900"
+                className="min-w-56 px-3 py-3 text-left font-semibold text-ink"
               >
                 <Link href={`/notices/${notice.id}`} className="hover:underline">
                   {notice.extracted.title.value || "(제목 미확인)"}
@@ -76,12 +76,12 @@ export function CompareTable({ notices }: CompareTableProps) {
         </thead>
         <tbody>
           {ROWS.map((row) => (
-            <tr key={row.label} className="border-b border-gray-100 align-top">
-              <th className="px-3 py-3 text-left font-medium text-gray-500">
+            <tr key={row.label} className="border-b border-hairline align-top">
+              <th className="px-3 py-3 text-left font-mono text-xs uppercase tracking-wide text-mute">
                 {row.label}
               </th>
               {notices.map((notice) => (
-                <td key={notice.id} className="px-3 py-3 text-gray-700">
+                <td key={notice.id} className="px-3 py-3 text-body">
                   {row.render(notice)}
                 </td>
               ))}

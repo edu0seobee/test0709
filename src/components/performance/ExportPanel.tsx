@@ -27,8 +27,8 @@ export function ExportPanel() {
 
   return (
     <Card className="flex flex-col gap-3 p-5">
-      <h2 className="text-base font-semibold text-gray-900">문서로 내보내기</h2>
-      <p className="text-sm text-gray-500">
+      <h2 className="text-base font-semibold text-ink">문서로 내보내기</h2>
+      <p className="text-sm text-mute">
         저장된 유사용역 실적과 기술자 경력을 워드(.docx) 파일로 내보냅니다. 다운로드한
         파일은 한글(HWP) 프로그램에서 그대로 열어 확인·수정한 뒤 &ldquo;다른 이름으로
         저장&rdquo;으로 .hwp 파일로 저장할 수 있습니다.

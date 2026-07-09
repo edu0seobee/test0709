@@ -27,7 +27,7 @@ export function NoticeCard({ notice }: NoticeCardProps) {
       <div className="flex items-start justify-between gap-2">
         <Link
           href={`/notices/${notice.id}`}
-          className="text-base font-semibold text-gray-900 hover:underline"
+          className="text-base font-semibold tracking-[-0.6px] text-ink hover:underline"
         >
           {notice.extracted.title.value || "(제목 미확인)"}
         </Link>
@@ -36,12 +36,12 @@ export function NoticeCard({ notice }: NoticeCardProps) {
 
       <Badge tone="amber">⚠ 원문 확인 필요</Badge>
 
-      <dl className="grid grid-cols-2 gap-x-3 gap-y-1 text-sm text-gray-600">
-        <dt className="text-gray-400">발주기관</dt>
+      <dl className="grid grid-cols-2 gap-x-3 gap-y-1 text-sm text-body">
+        <dt className="text-mute">발주기관</dt>
         <dd>{notice.extracted.organization.value || "-"}</dd>
-        <dt className="text-gray-400">예정금액</dt>
+        <dt className="text-mute">예정금액</dt>
         <dd>{formatCurrency(notice.extracted.estimatedAmount.value)}</dd>
-        <dt className="text-gray-400">용역기간</dt>
+        <dt className="text-mute">용역기간</dt>
         <dd className="truncate">{notice.extracted.serviceDuration.value || "-"}</dd>
       </dl>
 
@@ -50,7 +50,7 @@ export function NoticeCard({ notice }: NoticeCardProps) {
       <div className="mt-1 flex items-center justify-between">
         <Link
           href={`/notices/${notice.id}`}
-          className="text-sm font-medium text-blue-600 hover:underline"
+          className="text-sm font-medium text-link hover:underline"
         >
           자세히 보기 →
         </Link>

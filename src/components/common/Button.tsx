@@ -8,11 +8,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-300",
+  primary: "bg-ink text-on-primary hover:bg-[#2e2e2e] disabled:bg-hairline-strong",
   secondary:
-    "bg-white text-gray-800 border border-gray-300 hover:bg-gray-50 disabled:text-gray-400",
-  danger: "bg-red-600 text-white hover:bg-red-700 disabled:bg-red-300",
-  ghost: "bg-transparent text-gray-600 hover:bg-gray-100 disabled:text-gray-300",
+    "bg-canvas text-ink border border-hairline hover:bg-canvas-soft disabled:text-mute",
+  danger: "bg-error text-white hover:bg-error-deep disabled:bg-error-soft disabled:text-error-deep",
+  ghost: "bg-transparent text-body hover:bg-canvas-soft disabled:text-mute",
 };
 
 export function Button({
@@ -23,7 +23,7 @@ export function Button({
   return (
     <button
       className={clsx(
-        "inline-flex items-center justify-center gap-1.5 rounded-md px-3.5 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed",
+        "inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium tracking-[-0.28px] transition-colors disabled:cursor-not-allowed",
         variantClasses[variant],
         className,
       )}

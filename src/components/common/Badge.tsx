@@ -8,18 +8,18 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const toneClasses: Record<Tone, string> = {
-  gray: "bg-gray-100 text-gray-700",
-  red: "bg-red-100 text-red-700",
-  green: "bg-green-100 text-green-700",
-  amber: "bg-amber-100 text-amber-800",
-  blue: "bg-blue-100 text-blue-700",
+  gray: "bg-canvas-soft-2 text-body",
+  red: "bg-error-soft text-error-deep",
+  green: "bg-cyan-soft text-cyan-deep",
+  amber: "bg-warning-soft text-warning-deep",
+  blue: "bg-link-bg-soft text-link-deep",
 };
 
 export function Badge({ tone = "gray", className, ...props }: BadgeProps) {
   return (
     <span
       className={clsx(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
+        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
         toneClasses[tone],
         className,
       )}

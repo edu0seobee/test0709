@@ -15,7 +15,7 @@ export default function Home() {
       <NoticeUploadDropzone />
 
       {status === "loading" || status === "idle" ? (
-        <p className="py-8 text-center text-sm text-gray-400">불러오는 중…</p>
+        <p className="py-8 text-center text-sm text-mute">불러오는 중…</p>
       ) : notices.length === 0 ? (
         <EmptyState
           title="등록된 공고가 없습니다"

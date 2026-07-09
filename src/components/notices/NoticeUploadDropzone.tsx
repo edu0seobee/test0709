@@ -65,13 +65,13 @@ export function NoticeUploadDropzone() {
       }}
       className={clsx(
         "flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed px-6 py-12 text-center transition-colors",
-        isDragging ? "border-blue-400 bg-blue-50" : "border-gray-300 bg-white",
+        isDragging ? "border-link bg-link-bg-soft" : "border-hairline-strong bg-canvas",
       )}
     >
-      <p className="text-base font-medium text-gray-800">
+      <p className="text-base font-medium text-ink">
         공고 PDF를 여기로 끌어다 놓거나 파일을 선택하세요
       </p>
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-mute">
         텍스트가 포함된 PDF만 지원합니다. 스캔한 이미지 PDF는 정보를 자동으로 뽑을 수 없어요.
       </p>
       <Button

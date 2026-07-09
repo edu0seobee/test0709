@@ -14,9 +14,9 @@ export function NavHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="border-b border-gray-200 bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-        <Link href="/" className="text-lg font-bold text-gray-900">
+    <header className="border-b border-hairline bg-canvas">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:h-16 sm:flex-row sm:items-center sm:justify-between sm:py-0">
+        <Link href="/" className="text-lg font-semibold tracking-[-0.6px] text-ink">
           입찰 공고 분석기
         </Link>
         <nav className="flex gap-1">
@@ -30,10 +30,10 @@ export function NavHeader() {
                 key={item.href}
                 href={item.href}
                 className={clsx(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                  "rounded-full px-3 py-1.5 text-sm font-medium tracking-[-0.28px] transition-colors",
                   active
-                    ? "bg-blue-50 text-blue-700"
-                    : "text-gray-600 hover:bg-gray-100",
+                    ? "bg-canvas-soft-2 text-ink"
+                    : "text-body hover:bg-canvas-soft",
                 )}
               >
                 {item.label}
@@ -42,7 +42,7 @@ export function NavHeader() {
           })}
         </nav>
       </div>
-      <div className="bg-amber-50 px-4 py-1.5 text-center text-xs text-amber-800">
+      <div className="border-t border-hairline bg-canvas-soft px-4 py-1.5 text-center text-xs text-body">
         공고·체크리스트는 데이터베이스에 저장되어 다른 기기에서도 동일하게 보입니다. (실적·경력 정보는 이 브라우저에만 저장됩니다)
       </div>
     </header>

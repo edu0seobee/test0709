@@ -12,16 +12,16 @@ export function ProgressBar({ percent, label, className }: ProgressBarProps) {
   return (
     <div className={clsx("w-full", className)}>
       {label && (
-        <div className="mb-1 flex items-center justify-between text-xs text-gray-600">
+        <div className="mb-1 flex items-center justify-between text-xs text-body">
           <span>{label}</span>
           <span>{clamped}%</span>
         </div>
       )}
-      <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-hairline">
         <div
           className={clsx(
             "h-full rounded-full transition-all",
-            clamped === 100 ? "bg-green-500" : "bg-blue-500",
+            clamped === 100 ? "bg-cyan-deep" : "bg-ink",
           )}
           style={{ width: `${clamped}%` }}
         />

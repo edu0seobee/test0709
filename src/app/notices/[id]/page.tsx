@@ -35,7 +35,7 @@ export default function NoticeDetailPage() {
   const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   if (!notice && (status === "loading" || status === "idle")) {
-    return <p className="py-8 text-center text-sm text-gray-400">불러오는 중…</p>;
+    return <p className="py-8 text-center text-sm text-mute">불러오는 중…</p>;
   }
 
   if (!notice) {
@@ -43,7 +43,7 @@ export default function NoticeDetailPage() {
       <EmptyState
         title="공고를 찾을 수 없습니다"
         description="삭제되었거나 잘못된 주소일 수 있습니다."
-        action={<Link href="/" className="text-sm text-blue-600 hover:underline">목록으로 돌아가기</Link>}
+        action={<Link href="/" className="text-sm text-link hover:underline">목록으로 돌아가기</Link>}
       />
     );
   }
@@ -67,10 +67,10 @@ export default function NoticeDetailPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <Link href="/" className="text-sm text-blue-600 hover:underline">
+          <Link href="/" className="text-sm text-link hover:underline">
             ← 목록으로
           </Link>
-          <h1 className="mt-1 text-xl font-bold text-gray-900">
+          <h1 className="mt-1 text-xl font-semibold tracking-[-0.96px] text-ink">
             {e.title.value || "(제목 미확인)"}
           </h1>
         </div>
@@ -135,7 +135,7 @@ export default function NoticeDetailPage() {
             }
           />
           {e.deadline.value && (
-            <p className="text-xs text-gray-400">{formatDate(e.deadline.value)}</p>
+            <p className="text-xs text-mute">{formatDate(e.deadline.value)}</p>
           )}
         </NoticeFieldRow>
 
@@ -165,19 +165,19 @@ export default function NoticeDetailPage() {
             }
             placeholder="한 줄에 하나씩 입력하세요"
           />
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-mute">
             실제 준비 체크리스트는 아래 &ldquo;제출서류 체크리스트&rdquo;에서 관리하세요.
           </p>
         </NoticeFieldRow>
       </Card>
 
       <Card className="p-5">
-        <h2 className="mb-3 text-base font-semibold text-gray-900">제출서류 체크리스트</h2>
+        <h2 className="mb-3 text-base font-semibold tracking-[-0.6px] text-ink">제출서류 체크리스트</h2>
         <ChecklistPanel notice={notice} />
       </Card>
 
       <Card className="p-5">
-        <h2 className="mb-3 text-base font-semibold text-gray-900">원문 확인</h2>
+        <h2 className="mb-3 text-base font-semibold tracking-[-0.6px] text-ink">원문 확인</h2>
         <RawTextViewer rawLines={notice.rawLines} />
       </Card>
 

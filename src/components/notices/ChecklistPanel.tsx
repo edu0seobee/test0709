@@ -31,7 +31,7 @@ export function ChecklistPanel({ notice }: ChecklistPanelProps) {
       <ProgressBar percent={progress} label="제출서류 준비 진행률" />
 
       {notice.checklist.length === 0 ? (
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-mute">
           추출된 제출서류가 없습니다. 아래에서 직접 추가해주세요.
         </p>
       ) : (
@@ -42,11 +42,11 @@ export function ChecklistPanel({ notice }: ChecklistPanelProps) {
                 type="checkbox"
                 checked={item.checked}
                 onChange={() => toggleChecklistItem(notice.id, item.id)}
-                className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                className="h-4 w-4 rounded border-hairline-strong accent-ink"
               />
               <span
                 className={
-                  item.checked ? "flex-1 text-sm text-gray-400 line-through" : "flex-1 text-sm text-gray-800"
+                  item.checked ? "flex-1 text-sm text-mute line-through" : "flex-1 text-sm text-ink"
                 }
               >
                 {item.label}
@@ -54,7 +54,7 @@ export function ChecklistPanel({ notice }: ChecklistPanelProps) {
               <button
                 type="button"
                 onClick={() => removeChecklistItem(notice.id, item.id)}
-                className="text-xs text-gray-400 hover:text-red-600"
+                className="text-xs text-mute hover:text-error"
               >
                 삭제
               </button>
@@ -70,7 +70,7 @@ export function ChecklistPanel({ notice }: ChecklistPanelProps) {
           onChange={(e) => setNewLabel(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleAdd()}
           placeholder="제출서류 항목 추가"
-          className="flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="flex-1 rounded-md border border-hairline px-3 py-1.5 text-sm focus:border-link focus:outline-none focus:ring-1 focus:ring-link"
         />
         <Button variant="secondary" onClick={handleAdd}>
           추가
