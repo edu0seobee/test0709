@@ -15,6 +15,7 @@ import { NoticeFieldRow, fieldInputClass } from "@/components/notices/NoticeFiel
 import { RawTextViewer } from "@/components/notices/RawTextViewer";
 import { ChecklistPanel } from "@/components/notices/ChecklistPanel";
 import { AiSummaryCard } from "@/components/notices/AiSummaryCard";
+import { NaraLiveInfoPanel } from "@/components/notices/NaraLiveInfoPanel";
 
 function toDateTimeLocal(iso: string | null): string {
   if (!iso) return "";
@@ -175,6 +176,8 @@ export default function NoticeDetailPage() {
         <h2 className="mb-3 text-base font-semibold tracking-[-0.6px] text-ink">제출서류 체크리스트</h2>
         <ChecklistPanel notice={notice} />
       </Card>
+
+      {notice.naraSource && <NaraLiveInfoPanel naraSource={notice.naraSource} />}
 
       <Card className="p-5">
         <h2 className="mb-3 text-base font-semibold tracking-[-0.6px] text-ink">원문 확인</h2>

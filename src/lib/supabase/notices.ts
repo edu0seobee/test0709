@@ -1,5 +1,5 @@
 import { supabase } from "./client";
-import type { ChecklistItem, ExtractedFields, NoticeCard } from "@/lib/types/notice";
+import type { ChecklistItem, ExtractedFields, NaraSource, NoticeCard } from "@/lib/types/notice";
 
 interface ChecklistItemRow {
   id: string;
@@ -18,6 +18,7 @@ interface NoticeRow {
   raw_lines: string[];
   extracted: ExtractedFields;
   user_notes: string | null;
+  nara_source: NaraSource | null;
   checklist_items?: ChecklistItemRow[];
 }
 
@@ -43,6 +44,7 @@ function rowToNoticeCard(row: NoticeRow): NoticeCard {
       .sort((a, b) => a.position - b.position)
       .map(rowToChecklistItem),
     userNotes: row.user_notes ?? undefined,
+    naraSource: row.nara_source ?? null,
   };
 }
 
@@ -61,6 +63,7 @@ export async function insertNotice(input: {
   rawLines: string[];
   extracted: ExtractedFields;
   checklistLabels: string[];
+  naraSource?: NaraSource | null;
 }): Promise<NoticeCard> {
   const { data: noticeRow, error } = await supabase
     .from("notices")
@@ -68,6 +71,7 @@ export async function insertNotice(input: {
       source_file_name: input.sourceFileName,
       raw_lines: input.rawLines,
       extracted: input.extracted,
+      nara_source: input.naraSource ?? null,
     })
     .select()
     .single();

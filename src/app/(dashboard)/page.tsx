@@ -2,6 +2,7 @@
 
 import { useEnsureNoticesLoaded, useNoticeStore } from "@/lib/store/useNoticeStore";
 import { NoticeUploadDropzone } from "@/components/notices/NoticeUploadDropzone";
+import { NaraSearchPanel } from "@/components/notices/NaraSearchPanel";
 import { NoticeCard } from "@/components/notices/NoticeCard";
 import { EmptyState } from "@/components/common/EmptyState";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -23,6 +24,8 @@ export default function Home() {
       />
 
       <NoticeUploadDropzone />
+
+      <NaraSearchPanel />
 
       {status === "loading" || status === "idle" ? (
         <p className="py-8 text-center text-sm text-mute">불러오는 중…</p>

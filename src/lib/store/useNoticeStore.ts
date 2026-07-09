@@ -47,6 +47,7 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
         rawLines: draft.rawLines,
         extracted: draft.extracted,
         checklistLabels: draft.checklist.map((item) => item.label),
+        naraSource: draft.naraSource,
       });
       set((state) => ({ notices: [created, ...state.notices] }));
       return created;
