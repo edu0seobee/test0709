@@ -33,7 +33,8 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
     try {
       const notices = await noticesApi.fetchNotices();
       set({ notices, status: "loaded" });
-    } catch {
+    } catch (error) {
+      console.error("fetchNotices failed:", error);
       set({ status: "error" });
       showToast("공고 목록을 불러오지 못했습니다. 새로고침해주세요.");
     }
@@ -49,7 +50,8 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
       });
       set((state) => ({ notices: [created, ...state.notices] }));
       return created;
-    } catch {
+    } catch (error) {
+      console.error("addNotice failed:", error);
       showToast("공고를 저장하지 못했습니다. 다시 시도해주세요.");
       return null;
     }
@@ -76,7 +78,10 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
             extracted: notice.extracted,
             userNotes: notice.userNotes,
           })
-          .catch(() => showToast("변경사항 저장에 실패했습니다. 다시 시도해주세요."));
+          .catch((error) => {
+            console.error("updateNoticeFields failed:", error);
+            showToast("변경사항 저장에 실패했습니다. 다시 시도해주세요.");
+          });
       }, UPDATE_DEBOUNCE_MS),
     );
   },
@@ -85,7 +90,8 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
     set((state) => ({ notices: state.notices.filter((n) => n.id !== id) }));
     try {
       await noticesApi.deleteNotice(id);
-    } catch {
+    } catch (error) {
+      console.error("deleteNotice failed:", error);
       showToast("삭제에 실패했습니다. 새로고침 후 다시 시도해주세요.");
     }
   },
@@ -111,7 +117,8 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
 
     try {
       await noticesApi.setChecklistItemChecked(itemId, nextChecked);
-    } catch {
+    } catch (error) {
+      console.error("setChecklistItemChecked failed:", error);
       showToast("체크 상태 저장에 실패했습니다.");
     }
   },
@@ -131,7 +138,8 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
           n.id !== noticeId ? n : { ...n, checklist: [...n.checklist, item] },
         ),
       }));
-    } catch {
+    } catch (error) {
+      console.error("addChecklistItem failed:", error);
       showToast("항목 추가에 실패했습니다.");
     }
   },
@@ -147,7 +155,8 @@ export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
 
     try {
       await noticesApi.deleteChecklistItem(itemId);
-    } catch {
+    } catch (error) {
+      console.error("deleteChecklistItem failed:", error);
       showToast("삭제에 실패했습니다.");
     }
   },

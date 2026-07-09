@@ -34,6 +34,17 @@ export interface ExtractedPdfText {
 
 const MIN_TEXT_LENGTH_PER_PAGE = 20;
 
+// Some PDFs (notably ones with subsetted/broken Korean fonts) decode unmapped
+// glyphs to NUL or other control codepoints. Postgres/PostgREST rejects those
+// outright in jsonb/text columns ("unsupported Unicode escape sequence"), so
+// strip control characters here before this text ever reaches storage or the
+// extraction regexes.
+const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000b-\u001f\u007f]/g;
+
+function stripControlCharacters(text: string): string {
+  return text.replace(CONTROL_CHAR_PATTERN, "");
+}
+
 export async function extractPdfText(file: File): Promise<ExtractedPdfText> {
   const pdfjsLib = await loadPdfjs();
 
@@ -50,7 +61,7 @@ export async function extractPdfText(file: File): Promise<ExtractedPdfText> {
     for (const rawItem of textContent.items) {
       if (!("str" in rawItem)) continue;
       const item = rawItem as TextItem;
-      currentLine += item.str;
+      currentLine += stripControlCharacters(item.str);
       if (item.hasEOL) {
         lines.push(currentLine.trim());
         currentLine = "";
