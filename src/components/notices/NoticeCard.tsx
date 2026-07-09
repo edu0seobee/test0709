@@ -23,7 +23,7 @@ export function NoticeCard({ notice }: NoticeCardProps) {
   const progress = calcProgress(notice.checklist);
 
   return (
-    <Card className="flex flex-col gap-3 p-4">
+    <Card className="flex flex-col gap-3 p-4 transition-shadow hover:shadow-[0px_2px_2px_#0000000a,0px_8px_16px_-4px_#0000000a]">
       <div className="flex items-start justify-between gap-2">
         <Link
           href={`/notices/${notice.id}`}
@@ -34,20 +34,22 @@ export function NoticeCard({ notice }: NoticeCardProps) {
         <DDayBadge deadlineIso={notice.extracted.deadline.value} />
       </div>
 
-      <Badge tone="amber">⚠ 원문 확인 필요</Badge>
+      <Badge tone="amber" className="self-start">
+        ⚠ 원문 확인 필요
+      </Badge>
 
-      <dl className="grid grid-cols-2 gap-x-3 gap-y-1 text-sm text-body">
+      <dl className="grid grid-cols-[4.5rem_1fr] gap-y-1.5 border-t border-hairline pt-3 text-sm">
         <dt className="text-mute">발주기관</dt>
-        <dd>{notice.extracted.organization.value || "-"}</dd>
+        <dd className="text-body">{notice.extracted.organization.value || "-"}</dd>
         <dt className="text-mute">예정금액</dt>
-        <dd>{formatCurrency(notice.extracted.estimatedAmount.value)}</dd>
+        <dd className="text-body">{formatCurrency(notice.extracted.estimatedAmount.value)}</dd>
         <dt className="text-mute">용역기간</dt>
-        <dd className="truncate">{notice.extracted.serviceDuration.value || "-"}</dd>
+        <dd className="truncate text-body">{notice.extracted.serviceDuration.value || "-"}</dd>
       </dl>
 
       <ProgressBar percent={progress} label="제출서류 준비" />
 
-      <div className="mt-1 flex items-center justify-between">
+      <div className="mt-1 flex items-center justify-between border-t border-hairline pt-3">
         <Link
           href={`/notices/${notice.id}`}
           className="text-sm font-medium text-link hover:underline"

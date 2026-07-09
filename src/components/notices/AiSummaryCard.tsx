@@ -50,7 +50,7 @@ export function AiSummaryCard({ text }: AiSummaryCardProps) {
   return (
     <Card className="flex flex-col gap-3 p-5">
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-base font-semibold text-ink">AI 요약 (Gemini)</h2>
+        <h2 className="text-base font-semibold tracking-[-0.6px] text-ink">AI 요약 (Gemini)</h2>
         <Button
           variant="secondary"
           onClick={handleSummarize}

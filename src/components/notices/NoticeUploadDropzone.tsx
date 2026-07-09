@@ -64,10 +64,25 @@ export function NoticeUploadDropzone() {
         handleFiles(e.dataTransfer.files);
       }}
       className={clsx(
-        "flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed px-6 py-12 text-center transition-colors",
+        "flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed px-6 py-14 text-center transition-colors",
         isDragging ? "border-link bg-link-bg-soft" : "border-hairline-strong bg-canvas",
       )}
     >
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={clsx("mb-1", isDragging ? "text-link" : "text-mute")}
+        aria-hidden="true"
+      >
+        <path d="M12 15V3m0 0 4 4m-4-4-4 4" />
+        <path d="M4 16v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2" />
+      </svg>
       <p className="text-base font-medium text-ink">
         공고 PDF를 여기로 끌어다 놓거나 파일을 선택하세요
       </p>

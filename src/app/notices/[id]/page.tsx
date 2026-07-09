@@ -70,7 +70,7 @@ export default function NoticeDetailPage() {
           <Link href="/" className="text-sm text-link hover:underline">
             ← 목록으로
           </Link>
-          <h1 className="mt-1 text-xl font-semibold tracking-[-0.96px] text-ink">
+          <h1 className="mt-1 text-2xl font-semibold tracking-[-0.96px] text-ink">
             {e.title.value || "(제목 미확인)"}
           </h1>
         </div>

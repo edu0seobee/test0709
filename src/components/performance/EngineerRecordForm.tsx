@@ -37,8 +37,11 @@ export function EngineerRecordForm() {
 
   return (
     <Card className="flex flex-col gap-4 p-5">
-      <div className="flex items-center justify-between">
-        <h2 className="text-base font-semibold text-ink">투입 기술자 경력</h2>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h2 className="text-base font-semibold tracking-[-0.6px] text-ink">투입 기술자 경력</h2>
+          <p className="mt-0.5 text-sm text-mute">투입 예정 기술자의 경력을 등록하세요.</p>
+        </div>
         <Button
           type="button"
           variant="secondary"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEnsureNoticesLoaded, useNoticeStore } from "@/lib/store/useNoticeStore";
 import { CompareTable } from "@/components/compare/CompareTable";
 import { EmptyState } from "@/components/common/EmptyState";
+import { PageHeader } from "@/components/common/PageHeader";
 
 export default function ComparePage() {
   useEnsureNoticesLoaded();
@@ -43,8 +44,11 @@ export default function ComparePage() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-xl font-semibold tracking-[-0.96px] text-ink">공고 비교</h1>
+    <div className="flex flex-col gap-6">
+      <PageHeader
+        title="공고 비교"
+        description="선택한 공고들의 예정금액·마감일·참가자격·준비 현황을 나란히 비교합니다."
+      />
       <CompareTable notices={notices} />
     </div>
   );

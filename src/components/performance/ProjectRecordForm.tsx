@@ -38,8 +38,11 @@ export function ProjectRecordForm() {
 
   return (
     <Card className="flex flex-col gap-4 p-5">
-      <div className="flex items-center justify-between">
-        <h2 className="text-base font-semibold text-ink">유사용역 수행 실적</h2>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h2 className="text-base font-semibold tracking-[-0.6px] text-ink">유사용역 수행 실적</h2>
+          <p className="mt-0.5 text-sm text-mute">제출 서류에 재사용할 수행 실적을 등록하세요.</p>
+        </div>
         <Button
           type="button"
           variant="secondary"
