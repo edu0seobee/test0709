@@ -9,6 +9,19 @@ import { Badge } from "@/components/common/Badge";
 
 type PasswordMode = "login" | "signup";
 
+const COMPANY_EMAIL_DOMAIN = "seon.co.kr";
+
+function isCompanyEmail(value: string): boolean {
+  return value.trim().toLowerCase().endsWith(`@${COMPANY_EMAIL_DOMAIN}`);
+}
+
+function friendlyAuthErrorMessage(message: string): string {
+  if (message.includes("signup_domain_not_allowed")) {
+    return `회사 이메일(@${COMPANY_EMAIL_DOMAIN})만 가입할 수 있습니다.`;
+  }
+  return message;
+}
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -32,12 +45,18 @@ export default function LoginPage() {
     if (passwordMode === "login") {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) {
-        setPasswordError(error.message);
+        setPasswordError(friendlyAuthErrorMessage(error.message));
         setPasswordStatus("idle");
         return;
       }
       router.push("/");
       router.refresh();
+      return;
+    }
+
+    if (!isCompanyEmail(email)) {
+      setPasswordError(`회사 이메일(@${COMPANY_EMAIL_DOMAIN})만 가입할 수 있습니다.`);
+      setPasswordStatus("idle");
       return;
     }
 
@@ -47,7 +66,7 @@ export default function LoginPage() {
       options: { emailRedirectTo: `${window.location.origin}/` },
     });
     if (error) {
-      setPasswordError(error.message);
+      setPasswordError(friendlyAuthErrorMessage(error.message));
       setPasswordStatus("idle");
       return;
     }
@@ -65,13 +84,19 @@ export default function LoginPage() {
     setMagicStatus("loading");
     setMagicError(null);
 
+    if (!isCompanyEmail(magicEmail)) {
+      setMagicError(`회사 이메일(@${COMPANY_EMAIL_DOMAIN})만 가입할 수 있습니다.`);
+      setMagicStatus("idle");
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithOtp({
       email: magicEmail,
       options: { emailRedirectTo: `${window.location.origin}/` },
     });
 
     if (error) {
-      setMagicError(error.message);
+      setMagicError(friendlyAuthErrorMessage(error.message));
       setMagicStatus("idle");
       return;
     }
@@ -113,11 +138,17 @@ export default function LoginPage() {
             </button>
           </div>
 
+          {passwordMode === "signup" && (
+            <p className="-mt-1 text-xs text-mute">
+              회사 이메일(@{COMPANY_EMAIL_DOMAIN})만 가입할 수 있습니다.
+            </p>
+          )}
+
           <form className="flex flex-col gap-3" onSubmit={handlePasswordSubmit}>
             <input
               type="email"
               required
-              placeholder="이메일"
+              placeholder={passwordMode === "signup" ? `you@${COMPANY_EMAIL_DOMAIN}` : "이메일"}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full rounded-md border border-hairline px-3 py-2 text-sm text-ink focus:border-link focus:outline-none focus:ring-1 focus:ring-link"
@@ -154,7 +185,7 @@ export default function LoginPage() {
         <Card className="flex flex-col gap-3 p-5">
           <h2 className="text-sm font-medium text-ink">매직 링크로 로그인</h2>
           <p className="text-sm text-mute">
-            비밀번호 없이 이메일로 받은 링크를 눌러 로그인합니다.
+            비밀번호 없이 이메일로 받은 링크를 눌러 로그인합니다. (회사 이메일 @{COMPANY_EMAIL_DOMAIN}만 가능)
           </p>
 
           {magicStatus === "sent" ? (
