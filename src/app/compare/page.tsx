@@ -1,12 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useNoticeStore } from "@/lib/store/useNoticeStore";
+import { useEnsureNoticesLoaded, useNoticeStore } from "@/lib/store/useNoticeStore";
 import { CompareTable } from "@/components/compare/CompareTable";
 import { EmptyState } from "@/components/common/EmptyState";
 
 export default function ComparePage() {
+  useEnsureNoticesLoaded();
   const notices = useNoticeStore((s) => s.notices);
+  const status = useNoticeStore((s) => s.status);
+
+  if (status === "loading" || status === "idle") {
+    return <p className="py-8 text-center text-sm text-gray-400">불러오는 중…</p>;
+  }
 
   if (notices.length === 0) {
     return (

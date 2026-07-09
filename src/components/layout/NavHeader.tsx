@@ -43,7 +43,7 @@ export function NavHeader() {
         </nav>
       </div>
       <div className="bg-amber-50 px-4 py-1.5 text-center text-xs text-amber-800">
-        모든 데이터는 이 브라우저에만 저장됩니다. 다른 기기·브라우저에서는 보이지 않고, 브라우저 데이터를 지우면 사라집니다.
+        공고·체크리스트는 데이터베이스에 저장되어 다른 기기에서도 동일하게 보입니다. (실적·경력 정보는 이 브라우저에만 저장됩니다)
       </div>
     </header>
   );

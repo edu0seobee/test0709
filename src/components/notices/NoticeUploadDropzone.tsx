@@ -33,8 +33,8 @@ export function NoticeUploadDropzone() {
       try {
         const { lines, likelyScanned } = await extractPdfText(file);
         const card = buildNoticeCard(lines, file.name);
-        addNotice(card);
-        lastCreatedId = card.id;
+        const created = await addNotice(card);
+        lastCreatedId = created?.id ?? null;
         if (likelyScanned) {
           showToast(
             `${file.name}: 텍스트를 거의 찾지 못했습니다. 스캔 이미지 PDF일 수 있어 모든 항목을 직접 입력해야 합니다.`,

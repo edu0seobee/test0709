@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { useNoticeStore } from "@/lib/store/useNoticeStore";
+import { useEnsureNoticesLoaded, useNoticeStore } from "@/lib/store/useNoticeStore";
 import { formatDate } from "@/lib/utils/formatDate";
 import { Card } from "@/components/common/Card";
 import { Badge } from "@/components/common/Badge";
@@ -24,12 +24,18 @@ function toDateTimeLocal(iso: string | null): string {
 }
 
 export default function NoticeDetailPage() {
+  useEnsureNoticesLoaded();
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const notice = useNoticeStore((s) => s.notices.find((n) => n.id === params.id));
+  const status = useNoticeStore((s) => s.status);
   const updateNotice = useNoticeStore((s) => s.updateNotice);
   const removeNotice = useNoticeStore((s) => s.removeNotice);
   const [confirmingDelete, setConfirmingDelete] = useState(false);
+
+  if (!notice && (status === "loading" || status === "idle")) {
+    return <p className="py-8 text-center text-sm text-gray-400">불러오는 중…</p>;
+  }
 
   if (!notice) {
     return (
