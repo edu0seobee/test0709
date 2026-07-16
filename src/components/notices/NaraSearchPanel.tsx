@@ -66,7 +66,7 @@ export function NaraSearchPanel() {
   }
 
   async function handleImport(item: NaraSearchResultItem) {
-    const key = `${item.bizType}:${item.bidNtceNo}`;
+    const key = `${item.bizType}:${item.bidNtceNo}:${item.bidNtceOrd}`;
     setImportingKey(key);
     try {
       const params = new URLSearchParams({
@@ -168,7 +168,7 @@ export function NaraSearchPanel() {
           {results.length > 0 && (
             <ul className="flex flex-col gap-2">
               {results.map((item) => {
-                const key = `${item.bizType}:${item.bidNtceNo}`;
+                const key = `${item.bizType}:${item.bidNtceNo}:${item.bidNtceOrd}`;
                 return (
                   <li
                     key={key}

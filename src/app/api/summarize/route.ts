@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 export const runtime = "nodejs";
 
 const MAX_INPUT_LENGTH = 12000;
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
 
 type ErrorCode = "EMPTY_INPUT" | "RATE_LIMIT" | "FAILED";
 
