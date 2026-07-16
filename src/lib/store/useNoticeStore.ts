@@ -9,6 +9,7 @@ type LoadStatus = "idle" | "loading" | "loaded" | "error";
 interface NoticeStoreState {
   notices: NoticeCard[];
   status: LoadStatus;
+  hydrate: (notices: NoticeCard[]) => void;
   fetchNotices: () => Promise<void>;
   addNotice: (draft: NoticeCard) => Promise<NoticeCard | null>;
   updateNotice: (id: string, patch: Partial<NoticeCard>) => void;
@@ -27,6 +28,8 @@ const updateTimers = new Map<string, ReturnType<typeof setTimeout>>();
 export const useNoticeStore = create<NoticeStoreState>()((set, get) => ({
   notices: [],
   status: "idle",
+
+  hydrate: (notices) => set({ notices, status: "loaded" }),
 
   fetchNotices: async () => {
     set({ status: "loading" });

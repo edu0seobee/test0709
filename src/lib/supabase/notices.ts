@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "./client";
 import type { ChecklistItem, ExtractedFields, NaraSource, NoticeCard } from "@/lib/types/notice";
 
@@ -48,8 +49,8 @@ function rowToNoticeCard(row: NoticeRow): NoticeCard {
   };
 }
 
-export async function fetchNotices(): Promise<NoticeCard[]> {
-  const { data, error } = await supabase
+export async function fetchNotices(client: SupabaseClient = supabase): Promise<NoticeCard[]> {
+  const { data, error } = await client
     .from("notices")
     .select("*, checklist_items(*)")
     .order("created_at", { ascending: false });

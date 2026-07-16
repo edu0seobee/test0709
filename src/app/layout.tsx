@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "입찰 공고 분석기",
   description: "나라장터 입찰 공고문을 업로드해 핵심 정보를 정리하고 관리하는 도구",
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
